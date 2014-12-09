@@ -4,20 +4,24 @@ var React = window.React = require('react'),
     AboutPage = require("./pages/aboutPage");
 
 var App = React.createClass({
+
   getInitialState: function() {
     return {currentPage: 'home'};
   },
+
   componentWillMount: function() {
     if(window.location.hash.slice(1).length > 0) {
       this._navigateTo(window.location.hash.slice(1));
     }
   },
+
   handleClick: function(e) {
     if(e.target.attributes.href && e.target.attributes.href.value[0] === '#') {
       e.preventDefault();
       this._navigateTo(e.target.attributes.href.value.slice(1));
     }
   },
+
   render: function() {
     return (
       <div className="container" onClick={this.handleClick}>
@@ -40,6 +44,7 @@ var App = React.createClass({
       </div>
     );
   },
+
   _navigateTo: function(navigateTo) {
     if(this.state.currentPage !== navigateTo) {
       this.setState({currentPage: navigateTo});
@@ -48,4 +53,4 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App />, document.getElementById("app"));
+React.render(<App />, document.getElementById("app"));
